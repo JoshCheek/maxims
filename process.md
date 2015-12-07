@@ -41,3 +41,6 @@ You don't have time to do it the wrong way.
 Your typing speed is a massive bottleneck.
 
 Learn your tools.
+
+A service oriented architecture is not a solution to colleagues writing coupled code.
+Personally, I'd rather have a coupled class than a coupled service.

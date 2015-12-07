@@ -6,18 +6,23 @@ Bad Procedural code is better than bad Object Oriented code.
 
 There is nothing inherently wrong with a 200 line method.
 
-"Microservies" are objects whose methods are called with HTTP requests. This is intended to be both enlightening and critical.
+"Microservies" are objects whose stack frames are HTTP requests.
+This cocks my eyebrow, but maybe I'm missing something.
 
-Refactoring problematic code to conceal its problems is painting a portrait.
-The pretty paint is a facade, the portrait is rotting despite your vanity.
-Locked out of sight or not, Dorian, there is a reason your soul weeps.
+Refactoring problematic code to conceal its problems is vanity and denial.
 
-It does not matter if you use parens on method names. It does not matter if you use RSpec or Minitst.
+It does not matter if you use parens on method names. It does not matter if you use RSpec or Minitest.
 It does not matter if you use let blocks or instance variables. It does not matter if you use map or collect.
 It does not matter if your strings are single quoted or double quoted.
-These are bikesheds, how is your nuclear reactor?
+These are bikesheds, no permutation of them will matter when your nuclear reactor melts down.
 
 Develop an aversion to mixing your nouns and verbs.
+
+The flaw of object orientation is that it couples nouns and verbs -- data and behaviour.
+This is often fine, but if you've ever seen a 5k line class, you know that some data
+has many behaviours, and some behaviours do not operate on isolated data.
+DCI seems like it could be the solution here, but I've not yet seen it done compellingly.
+Perhaps this is where Ruby's refinements will finally find a home.
 
 Long methods are fine.
 
@@ -66,8 +71,11 @@ When considering whether to write `MyClass.new.my_method(my_argument)` or
 The former should immediately elicit fear.
 
 When a class is a verb, it should have one public method, and that method should be named
-`call` (eg `SignUserUp.call(data)`). If a verb class needs more than one public method,
+`call` (eg `SignUserUp.new(data).call`). If a verb class needs more than one public method,
 this implies you have a more than one class, one of them probably calls the other.
+
+Between `SomeClass.call(data)` and `SomeClass.new(data).call`, the former is better,
+because it goes through fewer objects. Eg you can stub it without needing a mock.
 
 Lifecycle callbacks are usually used to couple context.
 Pretend they are not in your toolbox.
